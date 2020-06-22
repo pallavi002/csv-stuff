@@ -36,7 +36,7 @@ app.post('/import', function (req, res) {
             res.redirect('back');
             return;
           }
-          fields.image = 'https://localhost:5000/' + files.image.name;
+          fields.image = 'https://quiet-mountain-15010.herokuapp.com/' + files.image.name;
           let calculation = new Calculation(fields);
           calculation.save(function (err, result) {
             if (err) {
