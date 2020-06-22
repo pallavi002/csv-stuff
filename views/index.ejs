@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 style="text-align: center;">Welcome to csv calculator</h1>
+  <form runat="server" action="/import" method="POST" enctype="multipart/form-data" >
+      <input type='file' name="image" />
+    <button type="submit">Upload file!</button>
+  </form>
+
+  <form action="/add" method="GET">
+    <button type="submit">Add</button>
+  </form>
+
+  <a target="/" href="/products">download csv</a>
+
+</script>
+</body>
+</html>
