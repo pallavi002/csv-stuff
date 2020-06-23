@@ -99,7 +99,7 @@ app.get('/add/:id', async function (res, req, next) {
   var pathname = new URL(url).pathname;
 
   addCols('./public' + pathname , {
-    sum: function (line, idx) {
+    Updated_added_Salary: function (line, idx) {
       let s = 0;
       line = line.split(',').map(d => +(d.trim()));
       s = line[1] + line[2]
@@ -141,7 +141,7 @@ app.get('/substract/:id', async function (res, req, next) {
   var pathname = new URL(url).pathname;
 
   subCols('./public' + pathname , {
-    Updates_Minus_Salary: function (line, idx) {
+    Updated_Minus_Salary: function (line, idx) {
       let s = 0;
       line = line.split(',').map(d => +(d.trim()));
       s = line[1]-line[3]
