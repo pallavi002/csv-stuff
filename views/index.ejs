@@ -37,15 +37,15 @@
           <form action="/add/<%= imagesdata[i]._id %>" method="GET">
             <button type="submit" class="btn btn-warning">Add Incentives</button>
           </form>
-          <form action="/double" method="GET">
+          <form action="/double/<%= imagesdata[i]._id %>" method="GET">
             <button type="submit" class="btn btn-warning">Double salary</button>
           </form>
-          <form action="/substract" method="GET">
+          <form action="/substract/<%= imagesdata[i]._id %>" method="GET">
             <button type="submit" class="btn btn-warning">substract salary</button>
           </form>
         </div>
         <div class="container p-5">
-          <a target="/" href="<%= imagesdata[i].image %>" download class="btn btn-primary btn-block">download csv</a>
+          <a target="/" href="<%= imagesdata[i].image %>" download class="btn btn-primary btn-block">Download CSV File</a>
         </div>
       </div>  
 
