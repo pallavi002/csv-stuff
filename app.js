@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/public'));
 initDatabase();
 
 app.get('/',async function (req, res) {
-  var imagesdata = await Calculation.find({});
+  var imagesdata = await Calculation.find({}).sort({ createdAt: -1 });
   res.render('index', {
     imagesdata: imagesdata
   });
