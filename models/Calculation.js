@@ -4,7 +4,8 @@ const calculationSchema = new mongoose.Schema({
   image: {
     type: String,
     default: null
-  }, 
+  }
+}, {
   timestamps: true
 });
 
