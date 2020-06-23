@@ -16,8 +16,11 @@ app.use(express.static(__dirname + '/public'));
 
 initDatabase();
 
-app.get('/', function (req, res) {
-  res.render('index');
+app.get('/',async function (req, res) {
+  var imagesdata = await Calculation.find({});
+  res.render('index', {
+    imagesdata: imagesdata
+  });
 })
 
 app.post('/import', function (req, res) {
@@ -65,7 +68,9 @@ app.post('/import', function (req, res) {
   });
 })
 
-app.get('/add', function (res, req, next) {
+app.get('/add/:id', async function (res, req, next) {
+  var id = req.req.params.id;
+  var addition = await Calculation.findById({_id: id})
   function addCols(path, data) {
     let csv = fs.readFileSync(path, 'utf8');
     csv = csv.split('\n').map(line => line.trim());
@@ -90,8 +95,10 @@ app.get('/add', function (res, req, next) {
     }).end(csv.join('\n'));
     
   }
+  var url = addition.image;
+  var pathname = new URL(url).pathname;
 
-  addCols('./public/products.csv', {
+  addCols('./public' + pathname , {
     sum: function (line, idx) {
       let s = 0;
       line = line.split(',').map(d => +(d.trim()));
@@ -102,7 +109,9 @@ app.get('/add', function (res, req, next) {
   res.res.redirect('back');
 })
 
-app.get('/substract', function (res, req, next) {
+app.get('/substract/:id', async function (res, req, next) {
+  var id = req.req.params.id;
+  var addition = await Calculation.findById({_id: id})
   function subCols(path, data) {
     let csv = fs.readFileSync(path, 'utf8');
     csv = csv.split('\n').map(line => line.trim());
@@ -128,7 +137,10 @@ app.get('/substract', function (res, req, next) {
     
   }
 
-  subCols('./public/products.csv', {
+  var url = addition.image;
+  var pathname = new URL(url).pathname;
+
+  subCols('./public' + pathname , {
     Updates_Minus_Salary: function (line, idx) {
       let s = 0;
       line = line.split(',').map(d => +(d.trim()));
@@ -139,7 +151,9 @@ app.get('/substract', function (res, req, next) {
   res.res.redirect('back');
 })
 
-app.get('/double', function (res, req, next) {
+app.get('/double/:id', async function (res, req, next) {
+  var id = req.req.params.id;
+  var addition = await Calculation.findById({_id: id})
   function doubleCols(path, data) {
     let csv = fs.readFileSync(path, 'utf8');
     csv = csv.split('\n').map(line => line.trim());
@@ -164,8 +178,10 @@ app.get('/double', function (res, req, next) {
     }).end(csv.join('\n'));
     
   }
+  var url = addition.image;
+  var pathname = new URL(url).pathname;
 
-  doubleCols('./public/products.csv', {
+  doubleCols('./public' + pathname , {
     Double_Salary: function (line, idx) {
       let s = 0;
       line = line.split(',').map(d => +(d.trim()));

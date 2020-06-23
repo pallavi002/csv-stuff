@@ -11,40 +11,53 @@
 
 <body>
   <h1 style="text-align: center;">Welcome to csv calculator</h1>
-  <div class="container jumbotron">
-    <form runat="server" action="/import" method="POST" enctype="multipart/form-data">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupFileAddon01">Upload File</span>
-        </div>
-        <div class="custom-file">
-          <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-        </div>
-      </div>
-  
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+  <div class="card p-5 m-5">
 
-  <div class="container jumbotron">
-    <h3 class="d-flex justify-content-center mb-5">Perform Calculations..</h3>
-    <div class="d-flex justify-content-around"> 
-      <form action="/add" method="GET">
-        <button type="submit" class="btn btn-warning">Add Incentives</button>
-      </form>
-      <form action="/double" method="GET">
-        <button type="submit" class="btn btn-warning">Double salary</button>
-      </form>
-      <form action="/substract" method="GET">
-        <button type="submit" class="btn btn-warning">substract salary</button>
+    <div class="container jumbotron">
+      <form runat="server" action="/import" method="POST" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupFileAddon01">Upload File</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" name="image" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+          </div>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
-  </div>  
+  
+    <% for(var i=0; i < imagesdata.length; i++ ) { %>
+      <div class="container jumbotron">
+        <h3 class="d-flex justify-content-center mb-3">Perform Calculations</h3>
+        <h6 class="d-flex justify-content-center mb-3"> File Name: <span><i><%= imagesdata[i].image %></i></span></h6>
+        <div class="d-flex justify-content-around"> 
+          <form action="/add/<%= imagesdata[i]._id %>" method="GET">
+            <button type="submit" class="btn btn-warning">Add Incentives</button>
+          </form>
+          <form action="/double" method="GET">
+            <button type="submit" class="btn btn-warning">Double salary</button>
+          </form>
+          <form action="/substract" method="GET">
+            <button type="submit" class="btn btn-warning">substract salary</button>
+          </form>
+        </div>
+        <div class="container p-5">
+          <a target="/" href="<%= imagesdata[i].image %>" download class="btn btn-primary btn-block">download csv</a>
+        </div>
+      </div>  
 
-  <div class="container">
-    <a target="/" href="https://quiet-mountain-15010.herokuapp.com/products.csv" download class="btn btn-primary btn-block">download csv</a>
+    <% } %>
+  
+  
+  
+
+
+
   </div>
+  
 
 
 
